@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>MSN Video Ad Blocker</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <header class="top">
+    <div class="brand">
+      <svg class="logo" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M12 3l7 3v5c0 4.5-3 8.2-7 10-4-1.8-7-5.5-7-10V6l7-3z"></path>
+        <path d="M9 12l2 2 4-4"></path>
+      </svg>
+      <div>
+        <h1>Video Ad Blocker</h1>
+        <p class="sub"><span class="dot"></span><span id="sub">Protecting msn.com</span></p>
+      </div>
+    </div>
+    <label class="switch" title="Turn the blocker on or off">
+      <input type="checkbox" id="enabled" role="switch" aria-label="Enable ad blocker">
+      <span class="track"></span>
+    </label>
+  </header>
+
+  <section class="stats" aria-label="Totals">
+    <div class="stat"><b id="statAds">0</b><span>ads handled</span></div>
+    <div class="stat"><b id="statDomains">0</b><span>blocked</span></div>
+    <div class="stat"><b id="statSel">0</b><span>selectors</span></div>
+  </section>
+
+  <section class="card" aria-label="Learning">
+    <div class="opt">
+      <div><strong>Learn from ads</strong><small>Log cues each time an ad appears</small></div>
+      <label class="switch"><input type="checkbox" id="learn" role="switch" aria-label="Learn from ads"><span class="track"></span></label>
+    </div>
+    <div class="opt">
+      <div><strong>Auto-block ad domains</strong><small>Block likely ad servers as they are found</small></div>
+      <label class="switch"><input type="checkbox" id="autoBlock" role="switch" aria-label="Auto-block ad domains"><span class="track"></span></label>
+    </div>
+  </section>
+
+  <nav class="tabs" role="tablist" aria-label="Details">
+    <button class="tab" role="tab" id="t-blocked" data-tab="blocked" aria-selected="true" aria-controls="p-blocked">Blocked <span class="badge" id="bBlocked">0</span></button>
+    <button class="tab" role="tab" id="t-review" data-tab="review" aria-selected="false" aria-controls="p-review">Review <span class="badge" id="bReview">0</span></button>
+    <button class="tab" role="tab" id="t-activity" data-tab="activity" aria-selected="false" aria-controls="p-activity">Activity</button>
+  </nav>
+
+  <main>
+    <div class="panel" id="p-blocked" role="tabpanel" aria-labelledby="t-blocked">
+      <h2>Domains</h2>
+      <ul class="list" id="domains"></ul>
+      <h2>Page selectors</h2>
+      <ul class="list" id="selectors"></ul>
+    </div>
+    <div class="panel" id="p-review" role="tabpanel" aria-labelledby="t-review" hidden>
+      <p class="hint">Seen around ads but not strong enough to block automatically. Block any you recognise.</p>
+      <ul class="list" id="candidates"></ul>
+    </div>
+    <div class="panel" id="p-activity" role="tabpanel" aria-labelledby="t-activity" hidden>
+      <ul class="list" id="log"></ul>
+    </div>
+  </main>
+
+  <footer class="foot">
+    <div class="actions">
+      <button class="btn primary" id="capture" title="Alt+Shift+A">Capture ad now</button>
+      <button class="btn" id="export">Export log</button>
+    </div>
+    <div class="status" id="status" role="status" aria-live="polite"></div>
+    <div class="links">
+      <button class="btn ghost small" id="clearLog">Clear log</button>
+      <button class="btn ghost small" id="reset">Reset learning</button>
+    </div>
+  </footer>
+  <script src="popup.js"></script>
+</body>
+</html>

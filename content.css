@@ -1,0 +1,26 @@
+/* Hide common ad containers on msn.com. Tweak/add selectors as MSN changes. */
+[id^="google_ads"],
+[id*="div-gpt-ad"],
+iframe[src*="doubleclick.net"],
+iframe[src*="googlesyndication.com"],
+.adcontainer,
+.ad-container,
+.ad-slot,
+.adslot,
+[class*="ad-slot"],
+[class*="adSlot"],
+[data-ad-slot],
+[aria-label="Advertisement"],
+[aria-label="advertisement"],
+[aria-label="Sponsored"] {
+  display: none !important;
+}
+
+/* Video-player ad overlays (generic patterns) */
+[class*="video-ad"],
+[class*="videoAd"],
+[class*="ad-overlay"],
+[class*="adOverlay"],
+[class*="ima-ad-container"] {
+  display: none !important;
+}

@@ -1,0 +1,52 @@
+{
+  "manifest_version": 3,
+  "name": "MSN Video Ad Blocker",
+  "version": "2.3.0",
+  "description": "Blocks and skips video ads on msn.com, and learns new ads by logging their cues.",
+  "permissions": [
+    "declarativeNetRequest",
+    "storage"
+  ],
+  "host_permissions": [
+    "*://*.msn.com/*"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "commands": {
+    "capture-ad": {
+      "suggested_key": {
+        "default": "Alt+Shift+A"
+      },
+      "description": "Capture the video player on screen (for the ad log)"
+    }
+  },
+  "action": {
+    "default_title": "MSN Video Ad Blocker",
+    "default_popup": "popup.html"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "*://*.msn.com/*"
+      ],
+      "js": [
+        "content.js"
+      ],
+      "css": [
+        "content.css"
+      ],
+      "run_at": "document_start",
+      "all_frames": true
+    }
+  ],
+  "declarative_net_request": {
+    "rule_resources": [
+      {
+        "id": "msn_ad_rules",
+        "enabled": true,
+        "path": "rules.json"
+      }
+    ]
+  }
+}
